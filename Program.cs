@@ -7,33 +7,50 @@ namespace vetoresMultidimensionais
     {
         static void Main(string[] args)
         {   //unidimensional colunas apenas, somente uma dimensao 
-            int[] num1 = new int[10];
+            //int[] num1 = new int[10];
 
             //bidimensional colunas e linhas
-            int[][] num2 = new int[10][];
+            //int[][] num2 = new int[10][];
             // outra forma de declarar
-            int[,] num3 = new int[x, z];
+            //int[,] num3 = new int[x, z];
 
-            WriteLine("Digite quantos numeros deseja");
-            int x = Convert.ToInt32(ReadLine());
+            //1) Nome do produtos
+            //2) Valor unitário
+            //3) Valor total dos lotes
 
-            WriteLine("Digite quantos numeros deseja por numero de tabuada ");
-            int z = Convert.ToInt32(ReadLine());
+            WriteLine("Digite quantos produtos deseja cadastrar: ");
+            int qtdProduct = Convert.ToInt32(ReadLine()); //entrada
 
-            for (int i = 1; i < x + 1; i++)
+            // em c# uma matriz so pode ter um unico tipo de dado
+            string[,] product = new string[qtdProduct, 3];  //matriz com 3 colunas nome, valor unitario, qtd de lote 
+
+            for (int i = 0; i < qtdProduct; i++)
             {
-                for(int j = 0; j <= z; j++)
-                {
-                    WriteLine($"{i} X {j} = {i * j}");
-                }
+                WriteLine($"Produto {i + 1}");
+
+                Write("Nome: ");
+                product[i, 0] = ReadLine(); //entrada
+
+                Write("Valor unitário: ");
+                product[i, 1] = ReadLine(); //entrada
+
+                Write("Quantidade de lotes: ");
+                product[i, 2] = ReadLine(); //entrada
             }
 
-            for(int i = 0; i < x; i++)
+            double totalValueLote = 0;
+
+            for (int i = 0; i < qtdProduct; i++)
             {
-                WriteLine("Digite o nuemro do primeiro produto");
-                num3[i, 2] = 
+                double valueUnit = Convert.ToDouble(product[i, 1]);
+                int qtdLote = Convert.ToInt32(product[i, 2]);
+                double total = valueUnit * qtdLote;
+                totalValueLote = total + totalValueLote;
             }
+
+            WriteLine($"Valor total do lote: R${totalValueLote}");
 
         }
     }
 }
+
